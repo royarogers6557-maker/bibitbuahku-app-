@@ -10,16 +10,9 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
       - uses: gradle/actions/setup-gradle@v3
-      - run: chmod +x ./gradlew || true
-      - name: Build Debug APK
-        run: |
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleDebug --stacktrace
-          else
-            gradle assembleDebug --stacktrace
-          fi
+      - run: chmod +x ./gradlew
+      - run: ./gradlew assembleDebug --stacktrace
       - uses: actions/upload-artifact@v4
-        if: always()
         with:
           name: bibitbuahku-apk
           path: app/build/outputs/apk/debug/*.apk
